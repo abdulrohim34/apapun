@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:controls="clr-namespace:GroceryStore.Controls"
+        xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+        BackgroundColor="White"
+        xmlns:customContentView="clr-namespace:GroceryStore.ContentView;assembly=GroceryStore"
+        xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+        ios:Page.UseSafeArea="true" x:Class="GroceryStore.Views.CartPage"
+        xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+        xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+    <ContentPage.Content>
+        <StackLayout Spacing="0"
+                BackgroundColor="{StaticResource BackgroundColor}">
+            <customContentView:CustomNavigationBar x:Name="NavigationBarView" />
+            <StackLayout Orientation="Vertical" Spacing="0"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand" x:Name="mainContent"
+                    IsVisible="false">
+                <ListView x:Name="listProducts" VerticalOptions="FillAndExpand"
+                        BackgroundColor="{StaticResource BackgroundColor}"
+                        ItemsSource="{Binding CartItems,Mode=TwoWay}"
+                        IsPullToRefreshEnabled="true" HasUnevenRows="true"
+                        SeparatorVisibility="None" SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical"
+                                        VerticalOptions="StartAndExpand"
+                                        BackgroundColor="White" Spacing="0">
+                                    <Grid BackgroundColor="White"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="FillAndExpand"
+                                            ColumnSpacing="0" Padding="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="100" />
+                                        </Grid.ColumnDefinitions>
+                                        <Frame WidthRequest="85"
+                                                CornerRadius="0" Padding="2"
+                                                BorderColor="White"
+                                                HeightRequest="85"
+                                                OutlineColor="White"
+                                                Grid.Row="0" Grid.Column="0"
+                                                HasShadow="false">
+                                            <ffimageloading:CachedImage Source="{Binding image ,Mode=TwoWay}"
+                                                    WidthRequest="80"
+                                                    HeightRequest="80"
+                                                    Grid.Row="0" Grid.Column="0" />
+                                        </Frame>
+                                        <StackLayout Orientation="Vertical"
+                                                Grid.Row="0" Grid.Column="1"
+                                                Grid.ColumnSpan="2"
+                                                Padding="15,0,10,0" Spacing="5">
+                                            <controls:LabelFontSize Text="{Binding product_name}"
+                                                    Style="{StaticResource ProductNameStyle}"
+                                                    HorizontalOptions="StartAndExpand" />
+                                            <StackLayout Orientation="Horizontal">
+                                                <controls:LabelFontSize Text="Harga Item"
+                                                        FontSize="{StaticResource FontSizeLong}"
+                                                        VerticalTextAlignment="Center"
+                                                        FontFamily="{StaticResource PlatformFont}"
+                                                        TextColor="Gray"
+                                                        HorizontalOptions="StartAndExpand" />
+                                                <controls:LabelFontSize
+                                                        IsVisible="{Binding IsPriceVisible}"
+                                                        Text="{Binding product_price, StringFormat='Rp {0}'}"
+                                                        FontSize="13"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        FontFamily="{StaticResource LightFont}"
+                                                        VerticalOptions="EndAndExpand"
+                                                        TextColor="#9a9696" />
+                                                <controls:LabelFontSize
+                                                        IsVisible="{Binding IsSpecialPriceVisible}"
+                                                        Text="{Binding special_price, StringFormat='Rp {0}'}"
+                                                        FontSize="13"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        FontFamily="{StaticResource LightFont}"
+                                                        VerticalOptions="EndAndExpand"
+                                                        TextColor="#9a9696" />
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <controls:LabelFontSize Text="Subtotal"
+                                                        FontSize="{StaticResource FontSizeLong}"
+                                                        VerticalTextAlignment="Center"
+                                                        FontFamily="{StaticResource PlatformFont}"
+                                                        TextColor="Gray"
+                                                        HorizontalOptions="StartAndExpand" />
+                                                <controls:LabelFontSize Text="{Binding total_without_tax, StringFormat='Rp {0}'}"
+                                                        FontSize="{StaticResource FontSizeLong}"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        FontFamily="{StaticResource PlatformFont}"
+                                                        VerticalOptions="EndAndExpand"
+                                                        TextColor="Green"
+                                                        FontAttributes="Bold" />
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal"
+                                                    VerticalOptions="EndAndExpand"
+                                                    Spacing="0">
+                                                <controls:LabelFontSize Text="{Binding weight_unit ,Mode=TwoWay}"
+                                                        LineHeight="1.3"
+                                                        FontSize="{StaticResource FontSizeLong}"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        FontFamily="{StaticResource PlatformFont}"
+                                                        TextColor="Gray" />
+                                                <StackLayout Orientation="Horizontal"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        Spacing="10">
+                                                    <Frame HasShadow="false"
+                                                            IsClippedToBounds="true"
+                                                            Padding="0"
+                                                            Margin="0"
+                                                            BackgroundColor="{StaticResource PrimaryColor}">
+                                                        <ffimageloading:CachedImage BackgroundColor="Transparent"
+                                                                Margin="5"
+                                                                WidthRequest="20"
+                                                                HeightRequest="20"
+                                                                Source="minus.png"
+                                                                HorizontalOptions="StartAndExpand"
+                                                                Scale="0.6"
+                                                                VerticalOptions="CenterAndExpand" />
+                                                        <Frame.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="decreseQuantity_Tapped"
+                                                                    CommandParameter="{Binding .}" />
+                                                        </Frame.GestureRecognizers>
+                                                    </Frame>
+                                                    <Label x:Name="quantity"
+                                                            FontFamily="{StaticResource PlatformFont}"
+                                                            VerticalTextAlignment="Center"
+                                                            Text="{Binding quantity ,Mode=TwoWay}"
+                                                            FontSize="15"
+                                                            TextColor="Black" />
+                                                    <Frame HasShadow="false"
+                                                            IsClippedToBounds="true"
+                                                            Padding="0"
+                                                            Margin="0"
+                                                            BackgroundColor="{StaticResource PrimaryColor}">
+                                                        <ffimageloading:CachedImage BackgroundColor="Transparent"
+                                                                Source="plus"
+                                                                Margin="5"
+                                                                WidthRequest="20"
+                                                                HeightRequest="20"
+                                                                HorizontalOptions="StartAndExpand"
+                                                                Scale="0.6"
+                                                                VerticalOptions="CenterAndExpand" />
+                                                        <Frame.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="increseQuantity_Tapped"
+                                                                    CommandParameter="{Binding .}" />
+                                                        </Frame.GestureRecognizers>
+                                                    </Frame>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Grid>
+                                    <BoxView BackgroundColor="{StaticResource BackgroundColor}"
+                                            HeightRequest="5"
+                                            HorizontalOptions="FillAndExpand"
+                                            WidthRequest="100" />
+                                </StackLayout>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Hapus" Icon="delete.png"
+                                            IsDestructive="true"
+                                            Clicked="DeleteProduct_Action"
+                                            CommandParameter="{Binding .}" />
+                                </ViewCell.ContextActions>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Footer>
+                        <StackLayout BackgroundColor="White" IsVisible="true"
+                                x:Name="grandTotalVisible"
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Vertical" Padding="10,10,10,10"
+                                Spacing="15">
+                            <controls:LabelFontSize Text="Order Details"
+                                    FontFamily="{StaticResource PlatformFont}"
+                                    TextColor="Black" FontAttributes="Bold"
+                                    FontSize="18" Margin="0,0,0,10" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Keranjang Item"
+                                        FontFamily="{StaticResource PlatformFont}"
+                                        TextColor="Black" FontSize="15"
+                                        HorizontalOptions="StartAndExpand" />
+                                <Label x:Name="t_quantity"
+                                        FontFamily="{StaticResource PlatformFont}"
+                                        TextColor="Black" FontSize="15"
+                                        HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Total Semua"
+                                        FontFamily="{StaticResource PlatformFont}"
+                                        TextColor="Black" FontSize="15"
+                                        HorizontalOptions="StartAndExpand" />
+                                <Label x:Name="m_total"
+                                        FontFamily="{StaticResource PlatformFont}"
+                                        TextColor="Black" FontSize="15"
+                                        HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ListView.Footer>
+                </ListView>
+                <StackLayout VerticalOptions="EndAndExpand" IsVisible="false"
+                        x:Name="b_cart" Grid.Row="1" Grid.Column="0"
+                        Orientation="Horizontal"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        Padding="20,15,20,15" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal"
+                            HorizontalOptions="StartAndExpand">
+                        <controls:LabelFontSize Text="Pesan"
+                                VerticalTextAlignment="Center"
+                                FontFamily="{StaticResource PlatformFont}"
+                                TextColor="{StaticResource TextColor}"
+                                FontSize="17" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                            HorizontalOptions="End">
+                        <controls:LabelFontSize x:Name="b_total"
+                                VerticalTextAlignment="Center"
+                                FontFamily="{StaticResource PlatformFont}"
+                                TextColor="{StaticResource TextColor}"
+                                FontSize="16" />
+                        <Image Source="next.png" WidthRequest="20"
+                                HeightRequest="20">
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="FileImageSource">
+                                    <On Platform="iOS" Value="next" />
+                                    <On Platform="Android" Value="next.png" />
+                                    <On Platform="UWP" Value="next.png" />
+                                </OnPlatform>
+                            </Image.Source>
+                        </Image>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="checkoutTap"
+                            Tapped="checkoutTap_Tapped" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <StackLayout x:Name="emptyContent" HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand" IsVisible="false"
+                    Orientation="Vertical">
+                <Grid HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="1" Source="cart_empty.png"
+                            Aspect="AspectFit" HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand" />
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

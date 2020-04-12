@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="#dbdbdb"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             x:Class="GroceryStore.Views.VerifyCustomerInfoPage">
+    <ContentPage.Content>
+        <Grid Padding="0,20,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackLayout Orientation="Vertical" Padding="10,20,10,10" BackgroundColor="White" Grid.Row="0" Grid.Column="0">
+                <Label Text="Please enter your verified email" FontFamily="{StaticResource BoldFont}" FontSize="17" FontAttributes="Bold" TextColor="Black" HorizontalOptions="FillAndExpand" />
+                <Entry Placeholder="Enter Email" TextColor="Black" PlaceholderColor="#3b3232" HorizontalOptions="FillAndExpand" />
+                <Button BackgroundColor="{StaticResource PrimaryColor}" FontFamily="{StaticResource NormalFont}" Text="Submit" TextColor="{StaticResource TextColor}" BorderRadius="0" />
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:controls="clr-namespace:GroceryStore.Controls"
+        BackgroundColor="White"
+        xmlns:customContentView="clr-namespace:GroceryStore.ContentView;assembly=GroceryStore"
+        xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+        ios:Page.UseSafeArea="true"
+        xmlns:htmlLabel="clr-namespace:LabelHtml.Forms.Plugin.Abstractions;assembly=HtmlLabel.Forms.Plugin"
+        x:Class="GroceryStore.Views.ProductDetailPage"
+        xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+        xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+    <ContentPage.Content>
+        <StackLayout Spacing="0"
+                BackgroundColor="{StaticResource BackgroundColor}">
+            <customContentView:CustomNavigationBar x:Name="NavigationBarView" />
+            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+                <ScrollView Orientation="Vertical" Padding="0"
+                        VerticalOptions="FillAndExpand">
+                    <Grid RowSpacing="0" VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <controls:CustomAppBarFrame Grid.Row="0" Grid.Column="0"
+                                Elevation="6" ShadowOpacity="0.10"
+                                Padding="0,20,0,20">
+                            <ffimageloading:CachedImage x:Name="image"
+                                    VerticalOptions="FillAndExpand"
+                                    HeightRequest="170" />
+                        </controls:CustomAppBarFrame>
+                        <controls:CustomFrame Grid.Row="1" Grid.RowSpan="4"
+                                Margin="0,20,0,0" Padding="20" Elevation="6"
+                                ShadowOpacity="0.10" BackgroundColor="White">
+                            <StackLayout>
+                                <Grid RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="35" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" x:Name="name"
+                                            Style="{StaticResource ProductNameStyle}" />
+                                    <ffimageloading:CachedImage Grid.Column="1"
+                                            x:Name="favouriteIcon"
+                                            Aspect="AspectFit" WidthRequest="24"
+                                            HeightRequest="24">
+                                        <ffimageloading:CachedImage.Source>
+                                            <OnPlatform x:TypeArguments="FileImageSource">
+                                                <On Platform="iOS"
+                                                        Value="Favourites_1" />
+                                                <On Platform="Android"
+                                                        Value="Favourites.png" />
+                                                <On Platform="WinPhone"
+                                                        Value="Favourites.png" />
+                                            </OnPlatform>
+                                        </ffimageloading:CachedImage.Source>
+                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                            <TapGestureRecognizer x:Name="addFavouriteTap"
+                                                    Tapped="addFavouriteTap_Tapped" />
+                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                    </ffimageloading:CachedImage>
+                                </Grid>
+                                <Label x:Name="brand_name" LineHeight="1.3"
+                                        FontFamily="{StaticResource PlatformFont}"
+                                        TextColor="#939393"
+                                        HorizontalOptions="StartAndExpand"
+                                        FontSize="15" FontAttributes="Bold" />
+                                <Grid HorizontalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.35*" />
+                                        <ColumnDefinition Width="0.65*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <controls:BetterPicker Image="dropdown"
+                                            Grid.Column="0" TextColor="Black"
+                                            FontSize="{StaticResource PriceFontSize}"
+                                            FontFamily="{StaticResource PlatformFont}"
+                                            x:Name="weight"
+                                            ItemDisplayBinding="{Binding weightUnit}"
+                                            SelectedItem="{Binding id}"
+                                            SelectedIndexChanged="weight_SelectedIndexChanged">
+                                    </controls:BetterPicker>
+                                </Grid>
+                                <StackLayout Orientation="Horizontal"
+                                        HorizontalOptions="FillAndExpand">
+                                    <StackLayout
+                                            HorizontalOptions="FillAndExpand">
+                                        <StackLayout x:Name="special_container"
+                                                Orientation="Horizontal">
+                                            <Label Style="{StaticResource PriceLabelStyle}"
+                                                    x:Name="special_price"
+                                                    Text="{Binding special_price, StringFormat='Rp {0}'}" />
+                                            <Label Style="{StaticResource StrikeLabelStyle}"
+                                                    x:Name="old_price"
+                                                    Text="{Binding price, StringFormat='Rp {0}'}" />
+                                        </StackLayout>
+                                        <Label Style="{StaticResource PriceLabelStyle}"
+                                                x:Name="price"
+                                                Text="{Binding price, StringFormat='Rp {0}'}" />
+                                    </StackLayout>
+                                    <!--<Label x:Name="price"
+                                            FontFamily="{StaticResource PlatformFont}"
+                                            TextColor="Green"
+                                            HorizontalOptions="FillAndExpand"
+                                            FontSize="18" FontAttributes="Bold"
+                                            VerticalTextAlignment="Center" />-->
+
+                                    <StackLayout Orientation="Horizontal"
+                                            HorizontalOptions="EndAndExpand"
+                                            Spacing="10">
+                                        <Frame HasShadow="false"
+                                                IsClippedToBounds="true"
+                                                Padding="0" Margin="0"
+                                                BackgroundColor="{StaticResource PrimaryColor}">
+                                            <ffimageloading:CachedImage BackgroundColor="Transparent"
+                                                    Margin="5" WidthRequest="20"
+                                                    HeightRequest="20"
+                                                    Source="minus.png"
+                                                    HorizontalOptions="StartAndExpand"
+                                                    Scale="0.6"
+                                                    VerticalOptions="CenterAndExpand" />
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="decreseQuantity_Tapped" />
+                                            </Frame.GestureRecognizers>
+                                        </Frame>
+                                        <Label x:Name="quantity"
+                                                FontFamily="{StaticResource PlatformFont}"
+                                                VerticalTextAlignment="Center"
+                                                Text="1" FontSize="15"
+                                                TextColor="Black" />
+                                        <Frame HasShadow="false"
+                                                IsClippedToBounds="true"
+                                                Padding="0" Margin="0"
+                                                BackgroundColor="{StaticResource PrimaryColor}">
+                                            <ffimageloading:CachedImage BackgroundColor="Transparent"
+                                                    Source="plus" Margin="5"
+                                                    WidthRequest="20"
+                                                    HeightRequest="20"
+                                                    HorizontalOptions="StartAndExpand"
+                                                    Scale="0.6"
+                                                    VerticalOptions="CenterAndExpand" />
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="increseQuantity_Tapped" />
+                                            </Frame.GestureRecognizers>
+                                        </Frame>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </controls:CustomFrame>
+                        <controls:CustomFrame Grid.Row="6" Elevation="6"
+                                ShadowOpacity="0.10" Grid.Column="0"
+                                VerticalOptions="FillAndExpand" Padding="20"
+                                Margin="0,20,0,0">
+                            <StackLayout Spacing="10"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand">
+                                <Label LineHeight="1.3"
+                                        FontFamily="{StaticResource PlatformFont}"
+                                        TextColor="{StaticResource ContrastColor}"
+                                        HorizontalOptions="StartAndExpand"
+                                        FontSize="18" FontAttributes="Bold"
+                                        Text="Product Details" />
+                                <htmlLabel:HtmlLabel FontFamily="{StaticResource PlatformFont}"
+                                        x:Name="description"
+                                        TextColor="{StaticResource ContrastColor}"
+                                        LineHeight="1.3" FontSize="16" />
+                            </StackLayout>
+                        </controls:CustomFrame>
+                    </Grid>
+                </ScrollView>
+                <AbsoluteLayout HorizontalOptions="FillAndExpand"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        Padding="10,0,10,0" VerticalOptions="EndAndExpand">
+                    <AbsoluteLayout.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double" iOS="60"
+                                Android="60" />
+                    </AbsoluteLayout.HeightRequest>
+                    <Label Text="TAMBAHKAN KE KERANJANG"
+                            FontFamily="{StaticResource PlatformFont}"
+                            TextColor="{StaticResource TextColor}" FontSize="18"
+                            AbsoluteLayout.LayoutBounds="0,0,1,1"
+                            AbsoluteLayout.LayoutFlags="SizeProportional"
+                            FontAttributes="Bold"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="CenterAndExpand" />
+                    <Label x:Name="b_price"
+                            FontFamily="{StaticResource PlatformFont}"
+                            TextColor="{StaticResource TextColor}"
+                            HorizontalOptions="EndAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            AbsoluteLayout.LayoutBounds="0,0,1,1"
+                            AbsoluteLayout.LayoutFlags="SizeProportional" />
+                    <AbsoluteLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="addToCart_Tapped" />
+                    </AbsoluteLayout.GestureRecognizers>
+                </AbsoluteLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="GroceryStore.Views.ManageAddressPage" Title="Manage Address"
+        xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+        ios:Page.UseSafeArea="true"
+        xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+        BackgroundColor="White"
+        xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+        xmlns:customContentView="clr-namespace:GroceryStore.ContentView;assembly=GroceryStore">
+    <ContentPage.Content>
+        <StackLayout Spacing="0"
+                BackgroundColor="{StaticResource BackgroundColor}">
+            <customContentView:CustomNavigationBar x:Name="NavigationBarView" />
+            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand"
+                    Spacing="0">
+                <Grid VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="55" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Orientation="Horizontal" Padding="15,20,15,0"
+                            VerticalOptions="Start" Grid.Row="0">
+                        <Label Text="Your Address" x:Name="saveAddress"
+                                IsVisible="false"
+                                FontSize="{StaticResource FontSize}"
+                                FontFamily="{StaticResource BoldFont}"
+                                TextColor="Black"
+                                HorizontalOptions="StartAndExpand"
+                                FontAttributes="Bold" />
+                        <Label Text="+ Add Address"
+                                FontSize="{StaticResource FontSize}"
+                                FontFamily="{StaticResource BoldFont}"
+                                TextColor="{StaticResource PrimaryColor}"
+                                HorizontalOptions="EndAndExpand"
+                                FontAttributes="Bold">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="addAddressTap"
+                                        Tapped="addAddressTap_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" x:Name="mainContent"
+                            IsVisible="false">
+                        <ListView VerticalOptions="FillAndExpand"
+                                ItemsSource="{Binding UserAddressList, Mode=TwoWay}"
+                                x:Name="listUserAddresses" HasUnevenRows="true"
+                                SeparatorVisibility="None"
+                                SeparatorColor="Transparent"
+                                ItemSelected="listUserAddresses_ItemSelected"
+                                SelectedItem="{Binding UserAddress}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Vertical"
+                                                BackgroundColor="White">
+                                            <StackLayout Orientation="Vertical"
+                                                    BackgroundColor="White"
+                                                    Padding="10,10,10,10">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <!--<input:RadioButton FontFamily="{StaticResource NormalFont}" Color="{StaticResource PrimaryColor}"
+                                                                        VerticalOptions="StartAndExpand" IsChecked="{Binding IsDefault}" x:Name="addressSelected"
+                                                                        CommandParameter="{Binding .}" Clicked="addressSelected_Clicked" />-->
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <StackLayout Orientation="Vertical"
+                                                                HorizontalOptions="StartAndExpand">
+                                                            <StackLayout Orientation="Horizontal"
+                                                                    HorizontalOptions="FillAndExpand">
+                                                                <!-- <Label FontSize="{StaticResource FontSize}" FontFamily="{StaticResource NormalFont}" VerticalTextAlignment="Center"
+                                                                        Text="Default Address:" IsVisible="{Binding IsDefault}" FontAttributes="Bold"
+                                                                        TextColor="{StaticResource PrimaryColor}" />
+                                                                <Label FontSize="{StaticResource FontSize}" FontFamily="{StaticResource BoldFont}" VerticalTextAlignment="Center"
+                                                                        Text="{Binding address_type}" FontAttributes="Bold" TextColor="Black" />-->
+                                                                <StackLayout Orientation="Horizontal"
+                                                                        HorizontalOptions="EndAndExpand"
+                                                                        VerticalOptions="Start">
+                                                                    <ffimageloading:CachedImage Source="edit"
+                                                                            HeightRequest="30">
+                                                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                                                            <TapGestureRecognizer x:Name="editAddressTap"
+                                                                                    Tapped="editAddressTap_Tapped"
+                                                                                    CommandParameter="{Binding .}" />
+                                                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                                                    </ffimageloading:CachedImage>
+                                                                    <Label FontFamily="{StaticResource NormalFont}"
+                                                                            VerticalTextAlignment="Center"
+                                                                            Text="|"
+                                                                            TextColor="Black"
+                                                                            FontSize="20" />
+                                                                    <ffimageloading:CachedImage Source="delete"
+                                                                            HeightRequest="30">
+                                                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                                                            <TapGestureRecognizer x:Name="deleteTap"
+                                                                                    Tapped="deleteTap_Tapped"
+                                                                                    CommandParameter="{Binding .}" />
+                                                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                                                    </ffimageloading:CachedImage>
+                                                                </StackLayout>
+                                                            </StackLayout>
+                                                            <Label FontSize="{StaticResource FontSize}"
+                                                                    FontFamily="{StaticResource NormalFont}"
+                                                                    Text="{Binding name}"
+                                                                    TextColor="Black" />
+                                                            <Label LineHeight="1.3"
+                                                                    FontSize="{StaticResource FontSize}"
+                                                                    FontFamily="{StaticResource NormalFont}"
+                                                                    Text="{Binding full_address}"
+                                                                    TextColor="Black" />
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label FontSize="{StaticResource FontSize}"
+                                                                        FontFamily="{StaticResource NormalFont}"
+                                                                        Text="Ph:"
+                                                                        TextColor="Black" />
+                                                                <Label FontSize="{StaticResource FontSize}"
+                                                                        FontFamily="{StaticResource NormalFont}"
+                                                                        Text="{Binding mobile_number}"
+                                                                        TextColor="Black" />
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <BoxView BackgroundColor="{StaticResource BackgroundColor}"
+                                                    HeightRequest="2"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    WidthRequest="100" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                    <!--<StackLayout Grid.Row="2" Padding="10" BackgroundColor="{StaticResource PrimaryColor}" VerticalOptions="EndAndExpand" x:Name="note" IsVisible="false">
+                        <Label x:Name="noteLabel" Text="Note : Click on radio button to set default address" FontFamily="{StaticResource NormalFont}" FontSize="13"
+                                HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="{StaticResource TextColor}" />
+                    </StackLayout>-->
+                    <StackLayout Grid.Row="1" x:Name="emptyContent"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand" IsVisible="false"
+                            Orientation="Vertical">
+                        <Grid HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="1" Source="address_empty.png"
+                                    Aspect="AspectFit"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand" />
+                        </Grid>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

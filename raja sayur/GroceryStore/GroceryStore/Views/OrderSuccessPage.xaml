@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="true"
+              xmlns:htmlLabel="clr-namespace:LabelHtml.Forms.Plugin.Abstractions;assembly=HtmlLabel.Forms.Plugin" x:Class="GroceryStore.Views.OrderSuccessPage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#fff" Margin="0,20,0,0" Padding="30,30,30,30">
+            <Image Source="success.png" Aspect="AspectFit" WidthRequest="80" />
+            <Label Text="Konfirmasi" TextColor="#000" FontFamily="{StaticResource NormalFont}" HorizontalOptions="CenterAndExpand" FontSize="25" Margin="0,0,0,10" />
+            <Label Text="Kami Menerima Orderan Anda" FontFamily="{StaticResource NormalFont}" TextColor="#8b8b8b" HorizontalOptions="CenterAndExpand" FontSize="16" Margin="0,0,0,10" />
+            <!--<Label Text="Orderan Anda Akan Tiba Pagi" TextColor="#8b8b8b" HorizontalOptions="CenterAndExpand" FontSize="16" />-->
+            <htmlLabel:HtmlLabel x:Name="orderMessage" FontFamily="{StaticResource NormalFont}" TextColor="#8b8b8b" HorizontalOptions="CenterAndExpand" FontSize="16" Margin="0,0,0,20" />
+            <Button Text="KEMBALI" FontFamily="{StaticResource NormalFont}" BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="FillAndExpand"
+                     TextColor="{StaticResource TextColor}" x:Name="BackToHome" Clicked="BackToHome_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:GroceryStore.Controls"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="true" BackgroundColor="White"
+              xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" x:Class="GroceryStore.Views.RegisterPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <!--<AbsoluteLayout>
+            <Image Source="splash_screen.jpg" AbsoluteLayout.LayoutBounds="0,0,1,1" Aspect="AspectFill"  AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand"/>-->
+            <StackLayout Orientation="Vertical" Padding="15,15,15,0">
+                <StackLayout Spacing="0">
+                    <Image Source="cross.png" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" WidthRequest="20" HeightRequest="20" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="CrossPage" Tapped="CrossPage_Tapped" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Image Source="side_logo_large.png" Aspect="AspectFit" HorizontalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="0">
+                        <Image.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android="150" iOS="150" />
+                        </Image.WidthRequest>
+                        <!--<Image.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android="50" iOS="50" />
+                        </Image.HeightRequest>-->
+                    </Image>
+                    <!--<Label Text="Lorem ipsum dolor sit amet" HorizontalOptions="CenterAndExpand" Grid.Row="1" Grid.Column="0"/>-->
+                    <Label Text="Buat Akun Baru" FontFamily="{StaticResource NormalFont}" VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="0" TextColor="Black"
+                            FontAttributes="Bold" FontSize="19" />
+                    <!--<StackLayout Orientation="Vertical" Grid.Row="2" Grid.Column="0">
+                    <Label Text="Nama" TextColor="Black" FontSize="{StaticResource FontSize}"
+                            FontFamily="{StaticResource BoldFont}" FontAttributes="Bold" />
+                    <StackLayout Orientation="Horizontal">
+                        <Entry HorizontalOptions="FillAndExpand" x:Name="name" ReturnType="Next">
+                            <Entry.TextColor>
+                                <OnPlatform x:TypeArguments="Color" Android="Black" Default="Black" />
+                            </Entry.TextColor>
+                        </Entry>
+                        <Image Source="username.png" HorizontalOptions="End" HeightRequest="30" />
+                    </StackLayout>
+                </StackLayout>-->
+                    <controls:CustomFrame Grid.Row="2" Grid.Column="0" ShadowOpacity="0.11" Elevation="1" Margin="0,0,0,10" Padding="5,2,5,2"
+                                           BorderColor="{StaticResource BorderColor}">
+                        <controls:BetterEntry x:Name="name" Placeholder="Nama" FontFamily="{StaticResource NormalFont}" />
+                    </controls:CustomFrame>
+                    <!--<StackLayout Orientation="Vertical" Grid.Row="3" Grid.Column="0">
+                    <Label Text="Email" FontSize="{StaticResource FontSize}" FontFamily="{StaticResource BoldFont}"
+                            TextColor="Black" FontAttributes="Bold" />
+                    <StackLayout Orientation="Horizontal">
+                        <Entry HorizontalOptions="FillAndExpand" x:Name="email" Keyboard="Email" ReturnType="Next">
+                            <Entry.TextColor>
+                                <OnPlatform x:TypeArguments="Color" Android="Black" Default="Black" />
+                            </Entry.TextColor>
+                        </Entry>
+                        <Image Source="email.png" HorizontalOptions="End" HeightRequest="30" />
+                    </StackLayout>
+                </StackLayout>-->
+                    <controls:CustomFrame Grid.Row="3" Grid.Column="0" ShadowOpacity="0.11" Elevation="1" Margin="0,0,0,10" Padding="5,2,5,2"
+                                           BorderColor="{StaticResource BorderColor}">
+                        <controls:BetterEntry x:Name="email" Keyboard="Email" ReturnType="Next" Placeholder="Email" FontFamily="{StaticResource NormalFont}" />
+                    </controls:CustomFrame>
+                    <!-- <StackLayout Orientation="Vertical" Grid.Row="4" Grid.Column="0">
+                    <Label Text="Nomor Handphone" FontSize="{StaticResource FontSize}"
+                            FontFamily="{StaticResource BoldFont}" TextColor="Black" FontAttributes="Bold" />
+                    <StackLayout Orientation="Horizontal">
+                        <Entry HorizontalOptions="FillAndExpand" x:Name="mobile_number" MaxLength="10"
+                                Keyboard="Telephone" ReturnType="Next">
+                            <Entry.TextColor>
+                                <OnPlatform x:TypeArguments="Color" Android="Black" Default="Black" />
+                            </Entry.TextColor>
+                        </Entry>
+                        <Image Source="mobile.png" HorizontalOptions="End" HeightRequest="30" />
+                    </StackLayout>
+                </StackLayout>-->
+                    <controls:CustomFrame Grid.Row="4" Grid.Column="0" ShadowOpacity="0.11" Elevation="1" Margin="0,0,0,10" Padding="5,2,5,2"
+                                           BorderColor="{StaticResource BorderColor}">
+                        <controls:BetterEntry x:Name="mobile_number" Keyboard="Telephone" ReturnType="Next" Placeholder="Nomor Handphone / Whatsapp" FontFamily="{StaticResource NormalFont}"
+                                               MaxLength="14" />
+                    </controls:CustomFrame>
+                    <!--<StackLayout Orientation="Vertical" Grid.Row="5" Grid.Column="0">
+                    <Label Text="Password" FontSize="{StaticResource FontSize}" FontFamily="{StaticResource BoldFont}"
+                            TextColor="Black" FontAttributes="Bold" />
+                    <StackLayout Orientation="Horizontal">
+                        <Entry HorizontalOptions="FillAndExpand" x:Name="password" IsPassword="True" ReturnType="Done">
+                            <Entry.TextColor>
+                                <OnPlatform x:TypeArguments="Color" Android="Black" Default="Black" />
+                            </Entry.TextColor>
+                        </Entry>
+                        <Image Source="password.png" HorizontalOptions="End" HeightRequest="30" />
+                    </StackLayout>
+                </StackLayout>-->
+                    <controls:CustomFrame Grid.Row="5" Grid.Column="0" ShadowOpacity="0.11" Elevation="1" Margin="0,0,0,10" Padding="5,2,5,2"
+                                           BorderColor="{StaticResource BorderColor}">
+                        <controls:BetterEntry x:Name="password" IsPassword="True" ReturnType="Done" Placeholder="Password" FontFamily="{StaticResource NormalFont}" />
+                    </controls:CustomFrame>
+                    <Picker Grid.Row="6" Grid.Column="0" x:Name="country" TextColor="Black" FontFamily="{StaticResource NormalFont}" HorizontalOptions="FillAndExpand"
+                             ItemDisplayBinding="{Binding name}" SelectedIndexChanged="country_SelectedIndexChanged" />
+                    <StackLayout Grid.Row="7" Orientation="Horizontal">
+                        <Picker x:Name="state" TextColor="Black" FontFamily="{StaticResource NormalFont}" HorizontalOptions="FillAndExpand" ItemDisplayBinding="{Binding name}"
+                                 SelectedIndexChanged="state_SelectedIndexChanged" />
+                        <Picker x:Name="city" TextColor="Black" FontFamily="{StaticResource NormalFont}" HorizontalOptions="FillAndExpand" ItemDisplayBinding="{Binding name}" />
+                    </StackLayout>
+                    <!--<StackLayout Orientation="Vertical" Grid.Row="6" Grid.Column="0">
+                        <input:CheckBox Color="Black" TextFontSize="12" FontFamily="{StaticResource NormalFont}"
+                                         x:Name="terms" VerticalOptions="CenterAndExpand" IsInNativeLayout="true"
+                                         Text="By Signing up you agree with our terms and conditions" />
+                    </StackLayout>-->
+                    <Button Text="Daftar" FontFamily="{StaticResource NormalFont}" x:Name="btnRegister" Clicked="btnRegister_Clicked" HorizontalOptions="FillAndExpand"
+                             Grid.Row="8" Grid.Column="0" BackgroundColor="{StaticResource PrimaryColor}" TextColor="{StaticResource TextColor}" />
+                    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="9" Grid.Column="0">
+                        <Label Text="Sudah Punya Akun?" FontSize="{StaticResource FontSize}" FontFamily="{StaticResource BoldFont}" HorizontalOptions="EndAndExpand"
+                                TextColor="Black" FontAttributes="Bold" />
+                        <Label Text="Login" FontSize="{StaticResource FontSize}" FontFamily="{StaticResource BoldFont}" HorizontalOptions="StartAndExpand" TextColor="Black"
+                                FontAttributes="Bold">
+                            <Label.Effects>
+                                <controls:UnderlineEffect />
+                            </Label.Effects>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="loginPage" Tapped="loginPage_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+            <!--            </AbsoluteLayout>-->
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

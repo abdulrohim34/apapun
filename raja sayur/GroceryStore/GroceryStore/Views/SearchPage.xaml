@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="true" x:Class="GroceryStore.Views.SearchPage"
+              BackgroundColor="White" xmlns:customContentView="clr-namespace:GroceryStore.ContentView;assembly=GroceryStore">
+    <ContentPage.Content>
+        <StackLayout Spacing="0" BackgroundColor="#e5e6e7">
+            <customContentView:CustomNavigationBar x:Name="NavigationBarView" Title="{Binding Title}" />
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Orientation="Horizontal" Padding="10,10">
+                <Entry HorizontalOptions="FillAndExpand" Placeholder="Search here..." x:Name="searchEntry" />
+                <Image Source="search_black" WidthRequest="30">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="search" Tapped="search_Tapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

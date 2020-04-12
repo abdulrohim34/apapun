@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" BackgroundColor="White"
+              xmlns:customContentView="clr-namespace:GroceryStore.ContentView;assembly=GroceryStore" Title="Notifikasi"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="true" x:Class="GroceryStore.Views.NotificationsPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="0" BackgroundColor="{StaticResource BackgroundColor}">
+            <customContentView:CustomNavigationBar x:Name="NavigationBarView" Title="{Binding Title}" />
+            <StackLayout Spacing="0" Padding="0,20,0,20" x:Name="mainContent" IsVisible="false">
+                <ListView x:Name="listNotifications" ItemsSource="{Binding NotificationList}" HasUnevenRows="true" SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout BackgroundColor="White" VerticalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Vertical" Padding="20,10,20,10" VerticalOptions="StartAndExpand">
+                                        <Label Text="{Binding title}" FontFamily="{StaticResource BoldFont}" TextColor="Black" FontSize="16" FontAttributes="Bold" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding description}" FontSize="{StaticResource FontSize}" FontFamily="{StaticResource NormalFont}" HorizontalOptions="FillAndExpand"
+                                                    TextColor="#3b3232" />
+                                            <!--<Button HorizontalOptions="End" VerticalOptions="Start" Text="View Detail" BackgroundColor="#ef3938" Scale="0.7" Margin="0,0,0,0" TextColor="White"/>-->
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <BoxView HeightRequest="2" WidthRequest="100" BackgroundColor="#dbdbdb" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout x:Name="emptyContent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="false" Orientation="Vertical">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="1" Source="notification_empty.png" Aspect="AspectFit" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

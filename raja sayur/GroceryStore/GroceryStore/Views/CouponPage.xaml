@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:controls="clr-namespace:GroceryStore.Controls"
+        xmlns:local="clr-namespace:GroceryStore.Services"
+        x:Class="GroceryStore.Views.CouponPage" Title="Coupon Codes"
+        BackgroundColor="{StaticResource BackgroundColor}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="CouponFrame" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="BackgroundColor" Value="#fffae6" />
+                <Setter Property="Padding" Value="10,3" />
+                <Setter Property="Margin" Value="2" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BorderColor" Value="#daceb7" />
+            </Style>
+            <Style x:Key="ContainerStyle" TargetType="StackLayout">
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <local:ProductListView IsPullToRefreshEnabled="true" Margin="0,20"
+                x:Name="listCoupons"
+                BackgroundColor="{StaticResource BackgroundColor}"
+                HasUnevenRows="True" SeparatorVisibility="None">
+            <local:ProductListView.Header>
+                <Label Margin="10,10" FontSize="{StaticResource PriceFontSize}"
+                        Text="AVAILABLE COUPONS"
+                        TextColor="{StaticResource ContrastColor}"
+                        FontFamily="{StaticResource PlatformFont}" />
+            </local:ProductListView.Header>
+            <local:ProductListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Spacing="0">
+                            <StackLayout Style="{StaticResource ContainerStyle}">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame Style="{StaticResource CouponFrame}">
+                                        <Label FontSize="{StaticResource PriceFontSize}"
+                                                Text="{Binding coupon_code}"
+                                                TextColor="#282c3f"
+                                                FontAttributes="Bold"
+                                                VerticalTextAlignment="Center"
+                                                FontFamily="{StaticResource PlatformFont}" />
+                                    </Frame>
+                                    <Button Text="Apply" BackgroundColor="White"
+                                            TextColor="{StaticResource PrimaryColor}"
+                                            FontFamily="{StaticResource PlatformFont}"
+                                            Clicked="ItemClicked"
+                                            CommandParameter="{Binding .}" />
+                                </StackLayout>
+                                <Label FontSize="17" Text="{Binding title}"
+                                        TextColor="#3e4152"
+                                        FontAttributes="Bold"
+                                        FontFamily="{StaticResource PlatformFont}" />
+                                <Label FontSize="{StaticResource PriceFontSize}"
+                                        Text="{Binding description}"
+                                        TextColor="#686b78" LineHeight="1.3"
+                                        FontFamily="{StaticResource PlatformFont}" />
+                            </StackLayout>
+                            <BoxView WidthRequest="100" HeightRequest="1"
+                                    BackgroundColor="#d4d5d9" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </local:ProductListView.ItemTemplate>
+        </local:ProductListView>
+    </ContentPage.Content>
+</ContentPage>

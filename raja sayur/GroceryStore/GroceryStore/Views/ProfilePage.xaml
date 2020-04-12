@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin" Title="Edit Profile" BackgroundColor="White"
+              xmlns:customContentView="clr-namespace:GroceryStore.ContentView;assembly=GroceryStore"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="true" x:Class="GroceryStore.Views.ProfilePage">
+    <ContentPage.Content>
+        <StackLayout Spacing="0" BackgroundColor="#e5e6e7">
+            <customContentView:CustomNavigationBar x:Name="NavigationBarView" Title="{Binding Title}" />
+            <StackLayout Padding="20,20,20,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="130" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <RelativeLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <controls:CircleImage Source="user.png" Aspect="AspectFill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" x:Name="profileImage" WidthRequest="130"
+                                               HeightRequest="130">
+                        </controls:CircleImage>
+                        <Frame CornerRadius="50" Scale="0.6" TranslationX="80" TranslationY="65" BackgroundColor="{StaticResource PrimaryColor}">
+                            <Image Source="edit_1.png" Aspect="AspectFit" WidthRequest="35" HeightRequest="35" />
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="profileUploadTap" Tapped="profileUploadTap_Tapped" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </RelativeLayout>
+                    <StackLayout Spacing="0" Grid.Row="1" Grid.Column="0">
+                        <Label Text="Name" FontFamily="{StaticResource NormalFont}" TextColor="#3b3535" />
+                        <Entry Text="" TextColor="#000" x:Name="name" />
+                    </StackLayout>
+                    <StackLayout Spacing="0" Grid.Row="2" Grid.Column="0">
+                        <Label Text="Email" FontFamily="{StaticResource NormalFont}" TextColor="#3b3535" />
+                        <Entry Text="" TextColor="#000" x:Name="email" />
+                    </StackLayout>
+                    <StackLayout Spacing="0" Grid.Row="3" Grid.Column="0">
+                        <Label Text="Phone Number" FontFamily="{StaticResource NormalFont}" TextColor="#3b3535" />
+                        <Entry Text="" TextColor="#000" PlaceholderColor="#000" IsEnabled="False" x:Name="mobile_number" />
+                    </StackLayout>
+                </Grid>
+                <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource PrimaryColor}" Padding="10,10,10,10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"
+                              HeightRequest="30">
+                    <Label Text="UPDATE PROFILE" FontFamily="{StaticResource BoldFont}" TextColor="{StaticResource TextColor}" FontAttributes="Bold" VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="CenterAndExpand" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="updateProfileTap" Tapped="updateProfileTap_Tapped" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

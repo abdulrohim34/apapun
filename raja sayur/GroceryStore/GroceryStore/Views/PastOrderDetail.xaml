@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" Title="Delivery Detail" Padding="0,20,0,0"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="true"
+              x:Class="GroceryStore.Views.PastOrderDetail">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" Padding="10,20,10,10">
+            <!--<Label Text="Delivery Details" FontAttributes="Bold" TextColor="Black" FontSize="18" Margin="0,0,0,20" />-->
+            <!--<BoxView HeightRequest="2"  WidthRequest="100" BackgroundColor="#dbdbdb" />-->
+            <ListView ItemsSource="{Binding OrderDetailList, Mode=TwoWay}" x:Name="listOrder" HasUnevenRows="true" SeparatorVisibility="None" SelectionMode="None">
+                <ListView.Header>
+                    <StackLayout>
+                        <Grid ColumnSpacing="0.5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*">
+                                </ColumnDefinition>
+                                <ColumnDefinition Width="1.3*">
+                                </ColumnDefinition>
+                                <ColumnDefinition Width="1*">
+                                </ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label FontFamily="{StaticResource BoldFont}" FontSize="14" Text="Date" Grid.Column="0" FontAttributes="Bold" TextColor="Black"
+                                    HorizontalOptions="CenterAndExpand" />
+                            <Label FontFamily="{StaticResource BoldFont}" FontSize="14" Text="Time" Grid.Column="1" FontAttributes="Bold" TextColor="Black"
+                                    HorizontalOptions="CenterAndExpand" />
+                            <Label FontFamily="{StaticResource BoldFont}" FontSize="14" Text="Status" Grid.Column="2" FontAttributes="Bold" TextColor="Black"
+                                    HorizontalOptions="CenterAndExpand" />
+                        </Grid>
+                        <BoxView HeightRequest="2" WidthRequest="100" BackgroundColor="#dbdbdb" />
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid VerticalOptions="CenterAndExpand" ColumnSpacing="0.5" RowSpacing="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*">
+                                    </ColumnDefinition>
+                                    <ColumnDefinition Width="1.3*">
+                                    </ColumnDefinition>
+                                    <ColumnDefinition Width="1*">
+                                    </ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label FontFamily="{StaticResource NormalFont}" FontSize="14" Text="{Binding order_date,StringFormat='{0:dd/MM/yy}'}" Grid.Column="0"
+                                        TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                <Label FontFamily="{StaticResource NormalFont}" FontSize="14" Text="09:00AM - 11:00AM" Grid.Column="1" TextColor="Black"
+                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                <Label FontFamily="{StaticResource NormalFont}" FontSize="14" Text="{Binding status}" Grid.Column="2" TextColor="{Binding status_color}"
+                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

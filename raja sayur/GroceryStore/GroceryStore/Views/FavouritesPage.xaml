@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:customContentView="clr-namespace:GroceryStore.ContentView;assembly=GroceryStore"
+              NavigationPage.BackButtonTitle="Back" NavigationPage.HasBackButton="true" BackgroundColor="White"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="true" x:Class="GroceryStore.Views.FavouritesPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="0" BackgroundColor="{StaticResource BackgroundColor}">
+            <customContentView:CustomNavigationBar x:Name="NavigationBarView" Title="{Binding Title}" />
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0,0,0,0" x:Name="mainContent" IsVisible="false">
+                <ListView x:Name="listFavourites" IsPullToRefreshEnabled="true" ItemsSource="{Binding FavouriteProducts}" SeparatorVisibility="None" HasUnevenRows="true"
+                           SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White" Spacing="0">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ColumnSpacing="0" Padding="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Frame WidthRequest="85" CornerRadius="5" Padding="4" BorderColor="#fffff" HeightRequest="85" OutlineColor="#fffff" HasShadow="false">
+                                            <Image Source="{Binding image}" WidthRequest="80" HeightRequest="80" />
+                                        </Frame>
+                                        <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="1" Padding="10,0,0,0" Spacing="5" HorizontalOptions="FillAndExpand">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding product_name}" FontSize="{StaticResource FontSize}" FontFamily="{StaticResource NormalFont}" TextColor="Black"
+                                                        VerticalTextAlignment="Center" />
+                                                <Image Source="delete.png" HorizontalOptions="EndAndExpand" HeightRequest="30">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding FavouriteCommand}" Tapped="DeleteClicked" CommandParameter="{Binding id}" />
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                            </StackLayout>
+                                            <Label Text="{Binding brand_name}" LineHeight="1.3" FontSize="{StaticResource PriceFontSize}" FontFamily="{StaticResource BoldFont}" TextColor="Gray"
+                                                    FontAttributes="Bold" />
+                                          <!--  <Label Text="{Binding price, StringFormat='Rs {0}'}" FontSize="{StaticResource FontSize}" FontFamily="{StaticResource BoldFont}" TextColor="Green"
+                                                    FontAttributes="Bold" VerticalOptions="EndAndExpand" />-->
+                                        </StackLayout>
+                                    </Grid>
+                                    <BoxView BackgroundColor="#e5e6e7" HeightRequest="2" HorizontalOptions="FillAndExpand" WidthRequest="100" />
+                                </StackLayout>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Delete" IsDestructive="true" CommandParameter="{Binding id}" Clicked="DeleteFavProductAction">
+                                    </MenuItem>
+                                </ViewCell.ContextActions>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout x:Name="emptyContent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="false">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="1" Source="product_empty.png" Aspect="AspectFit" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

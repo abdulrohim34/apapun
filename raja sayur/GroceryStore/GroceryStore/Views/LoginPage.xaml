@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:controls="clr-namespace:GroceryStore.Controls" BackgroundColor="White"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+              ios:Page.UseSafeArea="true"
+              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+              xmlns:suave="clr-namespace:SuaveControls.MaterialForms;assembly=SuaveControls.MaterialForms"
+              NavigationPage.HasNavigationBar="false" x:Class="GroceryStore.Views.LoginPage"
+              xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Padding="15,15,15,0">
+            <StackLayout Spacing="0">
+                <Image Source="cross.png" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" WidthRequest="20"
+                          HeightRequest="20"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="CrossPage" Tapped="CrossPage_Tapped"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Image Source="side_logo_large.png" HorizontalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="0">
+                    <Image.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android="150" iOS="150" />
+                    </Image.WidthRequest>
+                    <Image.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android="50" iOS="50" />
+                    </Image.HeightRequest>
+                </Image>
+                <!--<Label Text="Login Disini" FontFamily="{StaticResource NormalFont}" FontAttributes="Bold"
+                        VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="19" />-->
+                <StackLayout Orientation="Vertical" Grid.Row="2" Grid.Column="0">
+                    <!-- <StackLayout Orientation="Horizontal">
+                        <suave:MaterialEntry HorizontalOptions="FillAndExpand" Placeholder="Nomor HandPhone"
+                                              x:Name="mobile_number" Keyboard="Telephone"
+                                              AccentColor="{StaticResource PrimaryColor}" />
+                        <Image Source="mobile.png" HorizontalOptions="End" HeightRequest="30" />
+                    </StackLayout>-->
+                    <controls:CustomFrame ShadowOpacity="0.11" Elevation="1" Margin="0,0,0,10" Padding="5,2,5,2"
+                                           BorderColor="{StaticResource BorderColor}">
+                        <controls:BetterEntry Placeholder="No. Handphone"
+                                               FontFamily="{StaticResource NormalFont}" x:Name="email" />
+                    </controls:CustomFrame>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" Grid.Row="3" Grid.Column="0">
+                    <!--<StackLayout Orientation="Horizontal">
+                        <suave:MaterialEntry HorizontalOptions="FillAndExpand" Placeholder="Password" IsPassword="True"
+                                              x:Name="password" AccentColor="{StaticResource PrimaryColor}" />
+                        <Image Source="password.png" HorizontalOptions="End" HeightRequest="30" />
+                    </StackLayout>-->
+                    <controls:CustomFrame ShadowOpacity="0.11" Elevation="1" Margin="0,0,0,10" Padding="5,2,5,2"
+                                           BorderColor="{StaticResource BorderColor}">
+                        <controls:BetterEntry Placeholder="Password" IsPassword="True"
+                                               FontFamily="{StaticResource NormalFont}" x:Name="password" />
+                    </controls:CustomFrame>
+                </StackLayout>
+                <Label Text="Lupa Password?" FontFamily="{StaticResource BoldFont}"
+                        FontSize="{StaticResource FontSize}" HorizontalOptions="EndAndExpand" TextColor="Black"
+                        FontAttributes="Bold" Grid.Row="4" Grid.Column="0" VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="forgotPassword" Tapped="forgotPassword_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Button Text="Masuk" x:Name="btn_login" FontFamily="{StaticResource NormalFont}"
+                         Clicked="btn_login_Clicked" HorizontalOptions="FillAndExpand" Grid.Row="5" Grid.Column="0"
+                         BackgroundColor="{StaticResource PrimaryColor}" TextColor="{StaticResource TextColor}" />
+                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand"
+                              HorizontalOptions="CenterAndExpand" Grid.Row="6" Grid.Column="0">
+                    <Label Text="Tidak Punya Akun?" FontFamily="{StaticResource BoldFont}"
+                            FontSize="{StaticResource FontSize}" HorizontalOptions="EndAndExpand" TextColor="Black"
+                            FontAttributes="Bold" />
+                    <Label Text="Buat Akun" FontFamily="{StaticResource BoldFont}"
+                            FontSize="{StaticResource FontSize}" HorizontalOptions="StartAndExpand"
+                            TextColor="{StaticResource PrimaryColor}" FontAttributes="Bold">
+                        <Label.Effects>
+                            <controls:UnderlineEffect />
+                        </Label.Effects>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="signUpTap" Tapped="signUpTap_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

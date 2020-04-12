@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" IsPresented="false" MasterBehavior="Popover" Icon="menu.png"
+                   xmlns:views="clr-namespace:GroceryStore.Views" xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="true"
+                   xmlns:controls="clr-namespace:GroceryStore.Controls" x:Class="GroceryStore.Views.MasterTemplate"
+                   xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                   xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menu" Icon="menu">
+            <StackLayout Orientation="Vertical" BackgroundColor="#e8e8e8" Spacing="1">
+                <!--<StackLayout x:Name="VisibleProfileName" BackgroundColor="{StaticResource PrimaryColor}" IsVisible="False">
+                    <StackLayout.Padding>
+                        <OnPlatform x:TypeArguments="Thickness" iOS="10,55,10,20" Android="10,20,10,20" WinPhone="10,20,10,20" Default="10,20,10,20" />
+                    </StackLayout.Padding>
+                    <Label x:Name="profileName" FontFamily="{StaticResource NormalFont}" TextColor="White" FontSize="Medium" />
+                </StackLayout>-->
+                <Grid x:Name="VisibleProfileName" BackgroundColor="{StaticResource PrimaryColor}" IsVisible="False">
+                    <Grid.Padding>
+                        <OnPlatform x:TypeArguments="Thickness" iOS="10,55,10,20" Android="10,20,10,20" WinPhone="10,20,10,20" Default="10,20,10,20" />
+                    </Grid.Padding>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ffimageloading:CachedImage Source="user.png" Aspect="AspectFit" x:Name="profileImage" WidthRequest="50">
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:CircleTransformation />
+                        </ffimageloading:CachedImage.Transformations>
+                    </ffimageloading:CachedImage>
+                    <StackLayout Grid.Column="1" Spacing="2">
+                        <Label x:Name="profileName" FontFamily="{StaticResource NormalFont}" TextColor="White" FontSize="{StaticResource FontSizeLong}" />
+                        <Label x:Name="email" FontFamily="{StaticResource NormalFont}" TextColor="White" FontSize="{StaticResource FontSizeLong}" />
+                        <Label x:Name="mobile_number" FontFamily="{StaticResource NormalFont}" TextColor="White" FontSize="{StaticResource FontSizeLong}" />
+                    </StackLayout>
+                    <ffimageloading:CachedImage Grid.Column="2" Source="edit_1.png" Aspect="AspectFit" Margin="12" WidthRequest="24">
+                        <ffimageloading:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="editProfile" Tapped="editProfile_Tapped" />
+                        </ffimageloading:CachedImage.GestureRecognizers>
+                    </ffimageloading:CachedImage>
+                </Grid>
+                <Grid BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
+                    <!--<Grid.RowDefinitions>
+                    <RowDefinition Height="200" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>-->
+                    <!--<Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                </Grid>-->
+                    <StackLayout Grid.Row="0" Grid.Column="0" Spacing="15" VerticalOptions="FillAndExpand">
+                        <ListView x:Name="navigationDrawerList" RowHeight="55" SeparatorVisibility="None" VerticalOptions="FillAndExpand" BackgroundColor="White" ItemSelected="OnMenuItemSelected">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:ExtendedViewCell SelectedBackgroundColor="{StaticResource PrimaryColor}">
+                                        <!--<ViewCell>-->
+                                        <StackLayout VerticalOptions="FillAndExpand" Padding="10,0,10,0" Spacing="0" Orientation="Vertical">
+                                            <StackLayout VerticalOptions="FillAndExpand" Padding="2,10,0,10" Spacing="0">
+                                                <Label VerticalTextAlignment="Center" FontSize="{StaticResource FontSize}" Text="{Binding Title}" FontFamily="{StaticResource NormalFont}"
+                                                        TextColor="Black" VerticalOptions="FillAndExpand" />
+                                            </StackLayout>
+                                            <BoxView WidthRequest="100" HeightRequest="1" BackgroundColor="Silver" />
+                                        </StackLayout>
+                                        <!--</ViewCell>-->
+                                    </controls:ExtendedViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <!--<ListView x:Name="navigationDrawerList" RowHeight="60" SeparatorVisibility="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    -->
+                        <!--<StackLayout VerticalOptions="FillAndExpand" Orientation="Horizontal" Padding="20,10,0,10">-->
+                        <!--
+                                    <Label Text="{Binding Title}" TextColor="Black" BackgroundColor="{Binding BackgroundColor}" VerticalTextAlignment="Center" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" FontSize="Medium" >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnMenuItemSelected" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    -->
+                        <!--</StackLayout>-->
+                        <!--
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>-->
+                    </StackLayout>
+                </Grid>
+                <!--<StackLayout VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" Padding="20">
+                    <Label Text="Developed By GeekyWebTech" FontFamily="{StaticResource NormalFont}" TextColor="Gray" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="companyUrlLink" Tapped="companyUrlLink_Tapped" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>-->
+            </StackLayout>
+        </ContentPage>
+    </MasterDetailPage.Master>
+     <MasterDetailPage.ToolbarItems>
+        <ToolbarItem Text="Search" x:Name="toolSearch" Clicked="toolSearch_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="search" />
+                    <On Platform="Android" Value="search" />
+                    <On Platform="WinPhone" Value="search" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="Favourite" x:Name="toolFavourite" Icon="favourite" Clicked="toolFavourite_Clicked">
+        </ToolbarItem>
+        <ToolbarItem Text="Cart" x:Name="toolCart" Clicked="toolCart_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="cart" />
+                    <On Platform="Android" Value="cart.png" />
+                    <On Platform="WinPhone" Value="cart.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </MasterDetailPage.ToolbarItems>
+    <MasterDetailPage.Detail>
+        <NavigationPage Title="GroceryStore">
+            <!--<NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="menu.png"/>
+                </OnPlatform>
+            </NavigationPage.Icon>-->
+            <x:Arguments>
+                <views:Home />
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

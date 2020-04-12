@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" BackgroundColor="White"
+              x:Class="GroceryStore.ContentView.CustomNavigationBar" xmlns:controls="clr-namespace:GroceryStore.Controls"
+              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    <ContentView.Content>
+        <!--<controls:CustomAppBarFrame Elevation="4" ShadowOpacity="0.20" CornerRadius="0" Padding="0">
+            <StackLayout BackgroundColor="White">
+                <Grid x:Name="mainGrid" RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="53" />
+                        <RowDefinition Height="4" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ContentView>
+                        <Image Margin="12,15,12,9" HorizontalOptions="Center" VerticalOptions="Center" x:Name="btnHamburger" Aspect="AspectFill">
+                            <Image.WidthRequest>
+                                <OnPlatform x:TypeArguments="x:Double" Android="24" iOS="24" WinPhone="24" />
+                            </Image.WidthRequest>
+                            <Image.HeightRequest>
+                                <OnPlatform x:TypeArguments="x:Double" Android="24" iOS="24" WinPhone="24" />
+                            </Image.HeightRequest>
+                        </Image>
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="SlideOutDrawer" Tapped="SlideOutDrawer_Tapped" />
+                        </ContentView.GestureRecognizers>
+                    </ContentView>
+                    <ffimageloading:CachedImage Source="side_logo.png" x:Name="LogoTitle" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit" Grid.Row="0"
+                            Grid.Column="1" IsVisible="false">
+                        <ffimageloading:CachedImage.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double" iOS="90" />
+                        </ffimageloading:CachedImage.WidthRequest>
+                    </ffimageloading:CachedImage>
+                    <Label Margin="0,5,0,0" x:Name="PageTitle" LineBreakMode="TailTruncation" FontSize="{StaticResource FontSize}" TextColor="Black"
+                            FontFamily="{StaticResource BoldFont}" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Grid.Row="0"
+                            Grid.Column="1" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+                    <StackLayout Grid.Row="0" Grid.Column="2" Margin="8" Orientation="Horizontal" HorizontalOptions="EndAndExpand" Spacing="9">
+                        <StackLayout VerticalOptions="Center" Padding="2">
+                            <Image Source="Search_1.png" VerticalOptions="Center" Margin="2,5,0,0" HeightRequest="24" WidthRequest="24"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="Search" Tapped="Search_Tapped"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <RelativeLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                            <Image Source="Favourites_1.png" x:Name="FavView" VerticalOptions="Center" Margin="2">
+                                <Image.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="24" iOS="24" WinPhone="24" />
+                                </Image.WidthRequest>
+                                <Image.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="24" iOS="24" WinPhone="24" />
+                                </Image.HeightRequest>
+                            </Image>
+                            <Image Source="circle.png" x:Name="redBoxView1"
+                                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Y, ElementName=FavView, Factor=4,Constant=-8}"
+                                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, Property=X, ElementName=FavView, Factor=-4,Constant=25}">
+                                <Image.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="12" iOS="12" WinPhone="12" />
+                                </Image.WidthRequest>
+                                <Image.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="12" iOS="12" WinPhone="12" />
+                                </Image.HeightRequest>
+                            </Image>
+                            <Label x:Name="FavCountText" FontFamily="{StaticResource BoldFont}" Text="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                    FontSize="7" TextColor="White" FontAttributes="Bold" HeightRequest="8" WidthRequest="12"
+                                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Y, ElementName=FavView, Factor=1.2}"
+                                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, Property=X, ElementName=FavView, Factor=-4,Constant=25}" />
+                            <RelativeLayout.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="FavNavigation" Tapped="FavNavigation_Tapped" />
+                            </RelativeLayout.GestureRecognizers>
+                        </RelativeLayout>
+                        <RelativeLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                            <Image Source="cart.png" x:Name="CartView" VerticalOptions="Center" Margin="2">
+                                <Image.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="24" iOS="24" WinPhone="24" />
+                                </Image.WidthRequest>
+                                <Image.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="24" iOS="24" WinPhone="24" />
+                                </Image.HeightRequest>
+                            </Image>
+                            <Image Source="circle.png" x:Name="redBoxView"
+                                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Y, ElementName=CartView, Factor=4,Constant=-8}"
+                                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, Property=X, ElementName=CartView, Factor=-4,Constant=25}">
+                                <Image.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="12" iOS="12" WinPhone="12" />
+                                </Image.WidthRequest>
+                                <Image.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double" Android="12" iOS="12" WinPhone="12" />
+                                </Image.HeightRequest>
+                            </Image>
+                            <Label x:Name="CartCountText" FontFamily="{StaticResource BoldFont}" Text="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                    FontSize="7" TextColor="White" FontAttributes="Bold" HeightRequest="8" WidthRequest="12"
+                                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, Property=Y, ElementName=CartView, Factor=1.2}"
+                                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, Property=X, ElementName=CartView, Factor=-4,Constant=25}" />
+                            <RelativeLayout.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="CartNavigation" Tapped="CartNavigation_Tapped" />
+                            </RelativeLayout.GestureRecognizers>
+                        </RelativeLayout>
+                    </StackLayout>
+                </Grid>
+                <Grid x:Name="searchGrid" RowSpacing="0" ColumnSpacing="0" IsVisible="false" BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="57" />
+                    </Grid.RowDefinitions>
+                    <controls:CustomFrame Grid.Row="0" ShadowOpacity="0.12" Elevation="0" CornerRadius="0" Padding="5,2,5,2" BorderColor="{StaticResource BorderColor}"
+                                           HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <StackLayout Padding="5" HorizontalOptions="Start" VerticalOptions="Center">
+                                <Image Source="back.png" HorizontalOptions="Start" WidthRequest="24" x:Name="back"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer x:Name="Back" Tapped="Back_Tapped"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <controls:BetterEntry Placeholder="Search..." FontFamily="{StaticResource NormalFont}" HorizontalOptions="FillAndExpand" x:Name="searchEntry" VerticalOptions="Center" />
+
+                            <StackLayout Padding="5" HorizontalOptions="End" VerticalOptions="Center">
+                                <Image Source="search.png" WidthRequest="24" HorizontalOptions="End" BackgroundColor="Transparent" x:Name="search"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer x:Name="Search1" Tapped="Search_Tapped_1"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </StackLayout>
+                    </controls:CustomFrame>
+                </Grid>
+            </StackLayout>
+        </controls:CustomAppBarFrame>-->
+    </ContentView.Content>
+</ContentView>
+<!-- For Android use 2.6 and For iOS use 3.2 on YAxis-->

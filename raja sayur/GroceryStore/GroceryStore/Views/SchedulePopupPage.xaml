@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GroceryStore.Views.SchedulePopupPage"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             Padding="24">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation DurationIn="100"
+                                   DurationOut="200"
+                                   EasingIn="SinOut"
+                                   EasingOut="SinIn"
+                                   HasBackgroundAnimation="True"
+                                   PositionIn="Center"
+                                   PositionOut="Center"
+                                   ScaleIn="1.2"
+                                   ScaleOut="0.8"/>
+    </pages:PopupPage.Animation>
+    <StackLayout Spacing="24" BackgroundColor="White" Padding="20" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+        <Label FontFamily="{StaticResource BoldFont}" Text="Schedule Date" HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold"  FontSize="20" />
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+            <StackLayout Spacing="0">
+                <Label Text="From Date" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold" HorizontalOptions="FillAndExpand"
+                       VerticalOptions="CenterAndExpand" TextColor="Black" />
+                <DatePicker x:Name="FromDate" FontFamily="{StaticResource NormalFont}" TextColor="Black" HorizontalOptions="StartAndExpand"  Date="{Binding from_date ,Mode=TwoWay}" Format="dd/MM/yyyy" MinimumDate="{Binding MinimumDate}" />
+            </StackLayout>
+
+            <StackLayout Spacing="0">
+                <Label Text="To Date" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold" HorizontalOptions="FillAndExpand"
+                       VerticalOptions="CenterAndExpand" TextColor="Black" />
+                <DatePicker x:Name="ToDate" TextColor="Black" FontFamily="{StaticResource NormalFont}" HorizontalOptions="EndAndExpand" MinimumDate="{Binding Source={x:Reference FromDate}, Path=Date}" Date="{Binding to_date ,Mode=TwoWay}" Format="dd/MM/yyyy" />
+            </StackLayout>
+            <Button FontFamily="{StaticResource NormalFont}" TextColor="White" Text="Apply" BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="FillAndExpand" x:Name="BtnApply" Clicked="BtnApply_Clicked" />
+        </StackLayout>
+    </StackLayout>
+</pages:PopupPage>

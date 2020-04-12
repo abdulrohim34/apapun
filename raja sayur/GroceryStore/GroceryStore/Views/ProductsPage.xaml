@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:controls="clr-namespace:GroceryStore.Controls"
+        BackgroundColor="{StaticResource BackgroundColor}"
+        xmlns:customContentView="clr-namespace:GroceryStore.ContentView;assembly=GroceryStore"
+        xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+        xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+        ios:Page.UseSafeArea="true"
+        xmlns:local="clr-namespace:GroceryStore.Services"
+        x:Class="GroceryStore.Views.ProductsPage"
+        xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+        xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+    <ContentPage.Content>
+        <StackLayout Spacing="0"
+                BackgroundColor="{StaticResource BackgroundColor}">
+            <customContentView:CustomNavigationBar x:Name="NavigationBarView" />
+            <local:ProductListView IsPullToRefreshEnabled="true"
+                    x:Name="listProducts"
+                    BackgroundColor="{StaticResource BackgroundColor}"
+                    ItemsSource="{Binding Products, Mode=TwoWay}"
+                    HasUnevenRows="True" SeparatorVisibility="None"
+                    ItemSelected="listProducts_ItemSelected" Margin="0,5,0,0">
+                <local:ProductListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout VerticalOptions="FillAndExpand"
+                                    BackgroundColor="{StaticResource BackgroundColor}"
+                                    Padding="10,5,10,5"
+                                    HorizontalOptions="FillAndExpand">
+                                <controls:CustomFrame Elevation="2" Padding="5"
+                                        ShadowOpacity="0.10" CornerRadius="3"
+                                        HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Horizontal"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="FillAndExpand"
+                                            Spacing="0">
+                                        <Grid HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="FillAndExpand"
+                                                ColumnSpacing="0" Padding="5"
+                                                BackgroundColor="White">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="90" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="100" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout>
+                                                <Frame IsVisible="{Binding IsSpecialPriceVisible}"
+                                                        Style="{StaticResource OfferFrameStyle}">
+                                                    <Label Style="{StaticResource OfferLabelStyle}"
+                                                            Text="{Binding discount, StringFormat='{0}% OFF'}" />
+                                                </Frame>
+                                                <Label
+                                                        IsVisible="{Binding IsPriceVisible}"
+                                                        HeightRequest="20" />
+                                                <Frame WidthRequest="85"
+                                                        CornerRadius="5"
+                                                        Padding="4"
+                                                        BorderColor="#e5e6e7"
+                                                        HeightRequest="85"
+                                                        OutlineColor="#fffff"
+                                                        HasShadow="false">
+                                                    <ffimageloading:CachedImage Source="{Binding image ,Mode=TwoWay}"
+                                                            WidthRequest="80"
+                                                            HeightRequest="80" />
+                                                </Frame>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Vertical"
+                                                    Grid.Row="0"
+                                                    Grid.ColumnSpan="2"
+                                                    Grid.Column="1"
+                                                    Padding="10,0,5,0"
+                                                    Spacing="5">
+                                                <StackLayout Spacing="0"
+                                                        Orientation="Horizontal">
+                                                    <Label HorizontalOptions="StartAndExpand"
+                                                            Text="{Binding name}"
+                                                            Style="{StaticResource ProductNameStyle}" />
+                                                    <ffimageloading:CachedImage Source="{Binding favourite, Mode=TwoWay}"
+                                                            VerticalOptions="StartAndExpand"
+                                                            HorizontalOptions="EndAndExpand"
+                                                            HeightRequest="20">
+                                                        <ffimageloading:CachedImage.GestureRecognizers>
+                                                            <TapGestureRecognizer x:Name="favouriteImage"
+                                                                    Tapped="favouriteImage_Tapped"
+                                                                    CommandParameter="{Binding .}" />
+                                                        </ffimageloading:CachedImage.GestureRecognizers>
+                                                    </ffimageloading:CachedImage>
+                                                </StackLayout>
+                                                <Label Text="{Binding product_brand.brand_name}"
+                                                        LineHeight="1.3"
+                                                        FontSize="{StaticResource PriceFontSize}"
+                                                        TextColor="Gray"
+                                                        FontAttributes="Bold"
+                                                        FontFamily="{StaticResource PlatformFont}" />
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="0.50*" />
+                                                        <ColumnDefinition Width="0.40*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <controls:BetterPicker Image="dropdown"
+                                                            FontSize="{StaticResource PriceFontSize}"
+                                                            TextColor="Black"
+                                                            x:Name="pickerVariation"
+                                                            HorizontalOptions="FillAndExpand"
+                                                            ItemsSource="{Binding get_product_variations}"
+                                                            FontFamily="{StaticResource PlatformFont}"
+                                                            ItemDisplayBinding="{Binding weightUnit}"
+                                                            SelectedIndex="{Binding selected_index}"
+                                                            SelectedIndexChanged="pickerVariation_SelectedIndexChanged"
+                                                            SelectedItem="{Binding .}">
+                                                    </controls:BetterPicker>
+                                                    <Label Grid.Column="1" />
+                                                </Grid>
+
+                                                <StackLayout Spacing="0"
+                                                        Orientation="Horizontal">
+                                                    <StackLayout.Padding>
+                                                        <OnPlatform x:TypeArguments="Thickness"
+                                                                Android="0,5,5,0"
+                                                                iOS="0,10,5,0" />
+                                                    </StackLayout.Padding>
+                                                    <StackLayout IsVisible="{Binding IsSpecialPriceVisible}"
+                                                            Orientation="Horizontal">
+                                                        <Label Style="{StaticResource PriceLabelStyle}"
+                                                                Text="{Binding special_price, StringFormat='Rp {0}'}" />
+                                                        <Label Style="{StaticResource StrikeLabelStyle}"
+                                                                Text="{Binding price, StringFormat='Rp {0}'}" />
+                                                    </StackLayout>
+                                                    <Label Style="{StaticResource PriceLabelStyle}"
+                                                            IsVisible="{Binding IsPriceVisible}"
+                                                            Text="{Binding price, StringFormat='Rp {0}'}" />
+                                                    <Frame Padding="0"
+                                                            IsVisible="{Binding is_add_cart_visible, Mode=TwoWay}"
+                                                            CornerRadius="2"
+                                                            HasShadow="false"
+                                                            BackgroundColor="{StaticResource PrimaryColor}"
+                                                            IsClippedToBounds="true"
+                                                            VerticalOptions="EndAndExpand"
+                                                            HorizontalOptions="EndAndExpand">
+                                                        <StackLayout Orientation="Horizontal"
+                                                                Spacing="0"
+                                                                VerticalOptions="EndAndExpand"
+                                                                WidthRequest="100"
+                                                                HorizontalOptions="EndAndExpand">
+                                                            <Label HorizontalOptions="CenterAndExpand"
+                                                                    Margin="0,3,0,0"
+                                                                    HorizontalTextAlignment="Center"
+                                                                    FontFamily="{StaticResource BoldFont}"
+                                                                    VerticalTextAlignment="Center"
+                                                                    VerticalOptions="CenterAndExpand"
+                                                                    Text="ADD"
+                                                                    TextColor="White"
+                                                                    FontAttributes="Bold"
+                                                                    FontSize="13" />
+                                                            <StackLayout Padding="10"
+                                                                    HorizontalOptions="End"
+                                                                    BackgroundColor="{StaticResource PrimaryDarkColor}">
+                                                                <ffimageloading:CachedImage Source="plus"
+                                                                        Aspect="AspectFit"
+                                                                        WidthRequest="12" />
+                                                            </StackLayout>
+                                                            <StackLayout.GestureRecognizers>
+                                                                <TapGestureRecognizer x:Name="addToCart"
+                                                                        Tapped="addToCart_Tapped"
+                                                                        CommandParameter="{Binding .}" />
+                                                            </StackLayout.GestureRecognizers>
+                                                        </StackLayout>
+                                                    </Frame>
+
+                                                    <StackLayout Orientation="Horizontal"
+                                                            VerticalOptions="EndAndExpand"
+                                                            IsVisible="{Binding is_quantity_visible, Mode=TwoWay}"
+                                                            HorizontalOptions="EndAndExpand"
+                                                            Spacing="10">
+                                                        <Frame HasShadow="false"
+                                                                IsClippedToBounds="true"
+                                                                Padding="0"
+                                                                Margin="0"
+                                                                BackgroundColor="{StaticResource PrimaryColor}">
+                                                            <ffimageloading:CachedImage BackgroundColor="Transparent"
+                                                                    Margin="5"
+                                                                    WidthRequest="20"
+                                                                    HeightRequest="20"
+                                                                    Source="minus.png"
+                                                                    HorizontalOptions="StartAndExpand"
+                                                                    Scale="0.6"
+                                                                    VerticalOptions="CenterAndExpand" />
+                                                            <Frame.GestureRecognizers>
+                                                                <TapGestureRecognizer Tapped="decreseQuantity_Tapped"
+                                                                        CommandParameter="{Binding .}" />
+                                                            </Frame.GestureRecognizers>
+                                                        </Frame>
+                                                        <Label
+                                                                FontFamily="{StaticResource PlatformFont}"
+                                                                VerticalTextAlignment="Center"
+                                                                Text="{Binding cart_quantity, Mode=TwoWay}"
+                                                                FontSize="15"
+                                                                TextColor="Black" />
+                                                        <Frame HasShadow="false"
+                                                                IsClippedToBounds="true"
+                                                                Padding="0"
+                                                                Margin="0"
+                                                                BackgroundColor="{StaticResource PrimaryColor}">
+                                                            <ffimageloading:CachedImage BackgroundColor="Transparent"
+                                                                    Source="plus"
+                                                                    Margin="5"
+                                                                    WidthRequest="20"
+                                                                    HeightRequest="20"
+                                                                    HorizontalOptions="StartAndExpand"
+                                                                    Scale="0.6"
+                                                                    VerticalOptions="CenterAndExpand" />
+                                                            <Frame.GestureRecognizers>
+                                                                <TapGestureRecognizer Tapped="increseQuantity_Tapped"
+                                                                        CommandParameter="{Binding .}" />
+                                                            </Frame.GestureRecognizers>
+                                                        </Frame>
+                                                    </StackLayout>
+                                                </StackLayout>
+
+                                            </StackLayout>
+                                        </Grid>
+                                    </StackLayout>
+                                </controls:CustomFrame>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </local:ProductListView.ItemTemplate>
+            </local:ProductListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

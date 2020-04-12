@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             Padding="24"
+             x:Class="GroceryStore.Views.ReSchedulePopup">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation DurationIn="100"
+                                   DurationOut="200"
+                                   EasingIn="SinOut"
+                                   EasingOut="SinIn"
+                                   HasBackgroundAnimation="True"
+                                   PositionIn="Center"
+                                   PositionOut="Center"
+                                   ScaleIn="1.2"
+                                   ScaleOut="0.8"/>
+    </pages:PopupPage.Animation>
+    <StackLayout Spacing="24" BackgroundColor="White" Padding="24" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+        <Label Text="Choose Re-Schedule Date" FontFamily="{StaticResource BoldFont}" TextColor="Black" FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center" />
+        <DatePicker HorizontalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" x:Name="rescheduleDatePicker" />
+        <Button Text="Submit" BackgroundColor="{StaticResource PrimaryColor}" FontFamily="{StaticResource NormalFont}" TextColor="{StaticResource TextColor}" Clicked="Button_Clicked" />
+    </StackLayout>
+</pages:PopupPage>

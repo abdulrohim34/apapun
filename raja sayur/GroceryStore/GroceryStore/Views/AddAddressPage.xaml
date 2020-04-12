@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="true"
+              xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit" BackgroundColor="White"
+              xmlns:controls="clr-namespace:GroceryStore.Controls"
+              xmlns:customContentView="clr-namespace:GroceryStore.ContentView;assembly=GroceryStore" x:Class="GroceryStore.Views.AddAddressPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="0" BackgroundColor="{StaticResource BackgroundColor}">
+            <customContentView:CustomNavigationBar x:Name="NavigationBarView" Title="{Binding Title}" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <StackLayout Orientation="Vertical" BackgroundColor="#dbdbdb" Grid.Row="0" Grid.Column="0">
+                    <StackLayout Orientation="Vertical" Padding="10,10,10,10" BackgroundColor="White" Grid.Row="0" Grid.Column="0">
+                         
+                            <Entry x:Name="house_no" Text="{Binding house_no, Mode=TwoWay}" Placeholder="Alamat Rumah *" TextColor="Black" PlaceholderColor="#E0E0E0" HorizontalOptions="FillAndExpand"
+                                   />
+                        <Entry x:Name="street_details" Text="{Binding street_details, Mode=TwoWay}" Placeholder="Alamat Detail *" TextColor="Black" PlaceholderColor="#E0E0E0"
+                                HorizontalOptions="FillAndExpand" />
+                        <Entry x:Name="landmark_details" Text="{Binding landmark_details, Mode=TwoWay}" Placeholder="Patokan" TextColor="Black" PlaceholderColor="#E0E0E0"
+                                HorizontalOptions="FillAndExpand" />
+                       <!-- <Picker x:Name="area_details" FontFamily="{StaticResource NormalFont}" TextColor="Black" HorizontalOptions="FillAndExpand"
+                                 ItemDisplayBinding="{Binding name}" SelectedIndexChanged="area_details_SelectedIndexChanged" SelectedItem="{Binding data}" />
+                        -->
+                        <Picker x:Name="country" TextColor="Black" FontFamily="{StaticResource NormalFont}" HorizontalOptions="FillAndExpand" 
+                                      ItemDisplayBinding="{Binding name}" SelectedIndexChanged="country_SelectedIndexChanged" />
+                          
+                            <Picker x:Name="state" TextColor="Black" FontFamily="{StaticResource NormalFont}" HorizontalOptions="FillAndExpand" ItemDisplayBinding="{Binding name}"
+                                     SelectedIndexChanged="state_SelectedIndexChanged"/>
+                        <StackLayout Orientation="Horizontal">
+                          
+                              <Picker x:Name="city" TextColor="Black" FontFamily="{StaticResource NormalFont}" HorizontalOptions="FillAndExpand" ItemDisplayBinding="{Binding name}"
+                                     SelectedIndexChanged="city_SelectedIndexChanged" />
+                            <Entry x:Name="pincode" Text="{Binding pincode, Mode=TwoWay}" Keyboard="Numeric" MaxLength="6" Placeholder="Kode Pos *" TextColor="Black"
+                                    PlaceholderColor="#E0E0E0" HorizontalOptions="FillAndExpand" />
+                        </StackLayout>
+                        <!--<Label Text="Nama Penerima" FontSize="{StaticResource FontSize}" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold"
+                                TextColor="#121111" />-->
+                        <!-- <Picker x:Name="address_type1" HorizontalOptions="FillAndExpand">
+                        <Picker.Items>
+                            <x:String>Home</x:String>
+                            <x:String>Office</x:String>
+                            <x:String>Other</x:String>
+                        </Picker.Items>
+                        <Picker.SelectedIndex>0</Picker.SelectedIndex>
+                    </Picker>-->
+                       <!-- <StackLayout Spacing="12" Padding="10,0" VerticalOptions="CenterAndExpand">
+                            <input:SelectionView x:Name="address_type" Scale="0.9" ColumnNumber="3" ColumnSpacing="10" Color="{StaticResource PrimaryColor}" />
+                        </StackLayout>
+                        <input:CheckBox x:Name="default_address" Color="{StaticResource PrimaryColor}" FontFamily="{StaticResource NormalFont}"
+                                         Text="Tetapkan Sebagai Alamat Delivery" />-->
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Grid.Row="1" Orientation="Horizontal" Grid.Column="0" BackgroundColor="{StaticResource PrimaryColor}" Padding="10,10,10,10"
+                              HorizontalOptions="FillAndExpand">
+                    <Label Text="Tambah Alamat" x:Name="addressLbl" FontSize="{StaticResource FontSize}" FontFamily="{StaticResource BoldFont}" TextColor="{StaticResource TextColor}"
+                            FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="addAddressTap" Tapped="addAddressTap_Tapped" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

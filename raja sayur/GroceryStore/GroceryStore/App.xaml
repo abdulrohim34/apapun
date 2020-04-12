@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:controls="clr-namespace:GroceryStore.Controls"
+        x:Class="GroceryStore.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="TopBarColor">#ff0000</Color>
+            <Color x:Key="PrimaryColor">#ff0000</Color>
+            <Color x:Key="PrimaryDarkColor">#ff0000</Color>
+            <Color x:Key="AccentColor">#00000</Color>
+            <Color x:Key="TextColor">#fdfdfd</Color>
+            <Color x:Key="BorderColor">#eaeaea</Color>
+            <Color x:Key="BackgroundColor">#f7f8fb</Color>
+            <Color x:Key="GrayColor">#555555</Color>
+            <Color x:Key="ContrastColor">#555555</Color>
+            <Color x:Key="LightGrayColor">#999999</Color>
+            <Color x:Key="GreenColor">#04b144</Color>
+
+            <OnPlatform x:TypeArguments="x:Double" x:Key="FontSize" iOS="16"
+                    Android="17" />
+            <OnPlatform x:TypeArguments="x:Double" x:Key="FontSizeLong" iOS="15"
+                    Android="15" />
+            <OnPlatform x:TypeArguments="x:Double" x:Key="PriceFontSize"
+                    iOS="14" Android="14" />
+            <OnPlatform x:TypeArguments="x:Double" x:Key="SmallFontSize"
+                    iOS="13" Android="12" />
+
+            <Style x:Name="LabelStyle" TargetType="Label">
+                <Setter Property="Label.FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Caviar Dreams</OnPlatform.iOS>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="HeadingFont">
+                <On Platform="Android" Value="Caviar Dreams.ttf#Caviar Dreams" />
+                <On Platform="iOS" Value="Caviar Dreams" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
+                <On Platform="Android"
+                        Value="AvenirLTStd-Medium.otf#AvenirLTStd Medium" />
+                <On Platform="iOS" Value="AvenirLTStd-Medium" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="NormalFont">
+                <On Platform="Android"
+                        Value="AvenirLTStd-Medium.otf#AvenirLTStd Medium" />
+                <On Platform="iOS" Value="AvenirLTStd-Medium" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="LightFont">
+                <On Platform="Android"
+                        Value="AvenirLTStd-Light.otf#AvenirLTStd Light" />
+                <On Platform="iOS" Value="AvenirLTStd-Light" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="PlatformFont">
+                <On Platform="Android"
+                        Value="AvenirLTStd-Medium.otf#AvenirLTStd Medium" />
+                <On Platform="iOS" Value="AvenirLTStd-Light" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="Font" Android="12" iOS="10"
+                    WinPhone="10" x:Key="bottomButtonFontSize" />
+            <!--Global Styles-->
+            <Color x:Key="NavigationPrimary">#ff0000</Color>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor"
+                        Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarTextColor" Value="#fff" />
+            </Style>
+            <Style x:Key="bottomButtonStyle" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="BackgroundColor" Value="Green" />
+                <Setter Property="BorderColor" Value="Green" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Font"
+                        Value="{StaticResource bottomButtonFontSize}" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="BorderWidth" Value="0" />
+                <Setter Property="ContentLayout" Value="Top,0" />
+                <Setter Property="BorderRadius" Value="0" />
+            </Style>
+            <Style x:Key="bottomGridStyle" TargetType="Grid">
+                <Setter Property="BackgroundColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="ColumnSpacing" Value="0" />
+                <Setter Property="RowSpacing" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0" />
+            </Style>
+
+
+            <Style x:Key="PickerStyle" TargetType="controls:BorderlessPicker">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontFamily"
+                        Value="{StaticResource NormalFont}" />
+            </Style>
+
+            <Style x:Key="PickerFrame" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="Padding" Value="0,5,5,0" />
+                <Setter Property="Margin" Value="0,0,0,15" />
+                <!--<Setter Property="BorderColor" Value="{StaticResource BorderColor}" />-->
+            </Style>
+
+            <Style x:Key="BottomBorderStyle" TargetType="BoxView">
+                <Setter Property="WidthRequest" Value="100" />
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource LightGrayColor}" />
+            </Style>
+
+            <Style x:Key="PriceLabelStyle" TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="TextColor" Value="#51895E" />
+                <Setter Property="FontFamily" Value="{StaticResource BoldFont}" />
+            </Style>
+
+            <Style x:Key="StrikeLabelStyle" TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="TextDecorations" Value="Strikethrough" />
+                <Setter Property="TextColor" Value="#9a9696" />
+                <Setter Property="FontFamily" Value="{StaticResource LightFont}" />
+            </Style>
+
+            <Style x:Key="OfferLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="TextColor" Value="#619136" />
+                <Setter Property="FontFamily"
+                        Value="{StaticResource NormalFont}" />
+            </Style>
+
+            <Style x:Key="OfferFrameStyle" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="BackgroundColor" Value="#F1F7EB" />
+                <Setter Property="CornerRadius" Value="2" />
+                <Setter Property="Padding" Value="5,2" />
+            </Style>
+
+            <Style x:Key="ProductNameStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource ContrastColor}" />
+                <Setter Property="FontFamily"
+                        Value="{StaticResource NormalFont}" />
+            </Style>
+
+            <Style x:Key="ACStyle" TargetType="ActivityIndicator">
+                <Setter Property="Color" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+
+            <Style x:Key="LoadingStack" TargetType="StackLayout">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            </Style>
+
+            <Style x:Key="LoadingLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontFamily" Value="{StaticResource LightFont}" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource ContrastColor}" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" BackgroundColor="White"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core" android:TabbedPage.ToolbarPlacement="Bottom" ios:Page.UseSafeArea="true"
+             x:Class="GroceryStore.Views.OrdersPage" xmlns:views="clr-namespace:GroceryStore.Views">
+    <views:PastOrderPage>
+        <views:PastOrderPage.Icon>
+            <OnPlatform Android="order_green.png" iOS="order" />
+        </views:PastOrderPage.Icon>
+    </views:PastOrderPage>
+    <views:UpcomingOrderPage>
+        <views:UpcomingOrderPage.Icon>
+            <OnPlatform Android="order_green.png" iOS="order" />
+        </views:UpcomingOrderPage.Icon>
+    </views:UpcomingOrderPage>
+</TabbedPage>

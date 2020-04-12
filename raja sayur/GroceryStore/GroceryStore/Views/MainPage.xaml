@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:GroceryStore.Views"
+                   xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="true" Title="GroceryStore"
+                   x:Class="GroceryStore.Views.MainPage">
+    <MasterDetailPage.Master>
+        <views:MenuPage />
+    </MasterDetailPage.Master>
+    <MasterDetailPage.ToolbarItems>
+        <ToolbarItem Text="Cari" x:Name="toolSearch">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="search" />
+                    <On Platform="Android" Value="search.png" />
+                    <On Platform="WinPhone" Value="search.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="Favourite" x:Name="toolFavourite">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="favourite" />
+                    <On Platform="Android" Value="Favourites_1.png" />
+                    <On Platform="WinPhone" Value="Favourites_1.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="Keranjang" x:Name="toolCart">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="cart" />
+                    <On Platform="Android" Value="cart.png" />
+                    <On Platform="WinPhone" Value="cart.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </MasterDetailPage.ToolbarItems>
+    <MasterDetailPage.Detail>
+        <NavigationPage Title="RajaSayur">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_feed.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:Home />
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>
