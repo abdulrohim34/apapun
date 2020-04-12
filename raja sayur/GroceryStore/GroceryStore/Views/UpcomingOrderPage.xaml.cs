@@ -19,7 +19,7 @@ namespace GroceryStore.Views
     {
         public UpcomingOrderVM ViewModel;
 
-        public string TotalData { get; set; }
+       
         public UpcomingOrderPage()
         {
             InitializeComponent();
@@ -30,6 +30,7 @@ namespace GroceryStore.Views
                 getData();
                 listUpcomingOrders.IsRefreshing = false;
             });
+
             getData();
         }
 
@@ -54,7 +55,7 @@ namespace GroceryStore.Views
                             mainContent.IsVisible = true;
                             emptyContent.IsVisible = false;
                             ViewModel.UpcomingOrderList = new ObservableCollection<OrderHistory.UpcomingOrder>(response.data);
-                            TotalData = response.total;
+                            getTotalData.Text ="Total Orderan Rp." +(response.total).ToString("n0");  
                             Config.HideDialog();
                         }
                         else

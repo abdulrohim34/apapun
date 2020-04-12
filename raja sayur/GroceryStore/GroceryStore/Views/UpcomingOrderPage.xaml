@@ -12,7 +12,7 @@
                     <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Padding="10" Spacing="5" BackgroundColor="White">
                         <StackLayout Orientation="Horizontal" Spacing="0">
                             <StackLayout Orientation="Horizontal">
-                                <Label x:Name="total_data" Text="{Binding TotalData, StringFormat='Total Order : Rp. {0}'}" 
+                                <Label x:Name="getTotalData" 
                                        FontSize="{StaticResource FontSize}" FontFamily="{StaticResource NormalFont}"
                                  HorizontalOptions="StartAndExpand" TextColor="Black" VerticalTextAlignment="Center" />
                             </StackLayout>
