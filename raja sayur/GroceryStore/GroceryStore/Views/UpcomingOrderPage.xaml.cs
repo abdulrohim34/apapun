@@ -18,6 +18,8 @@ namespace GroceryStore.Views
     public partial class UpcomingOrderPage : ContentPage
     {
         public UpcomingOrderVM ViewModel;
+
+        public string TotalData { get; set; }
         public UpcomingOrderPage()
         {
             InitializeComponent();
@@ -52,6 +54,7 @@ namespace GroceryStore.Views
                             mainContent.IsVisible = true;
                             emptyContent.IsVisible = false;
                             ViewModel.UpcomingOrderList = new ObservableCollection<OrderHistory.UpcomingOrder>(response.data);
+                            TotalData = response.total;
                             Config.HideDialog();
                         }
                         else

@@ -7,6 +7,20 @@
         <StackLayout Spacing="0" BackgroundColor="{StaticResource BackgroundColor}">
             <customContentView:CustomNavigationBar x:Name="NavigationBarView" Title="{Binding Title}" />
             <StackLayout Padding="0,2,0,0" x:Name="mainContent" IsVisible="false">
+
+                <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource BackgroundColor}">
+                    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Padding="10" Spacing="5" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <StackLayout Orientation="Horizontal">
+                                <Label x:Name="total_data" Text="{Binding TotalData, StringFormat='Total Order : Rp. {0}'}" 
+                                       FontSize="{StaticResource FontSize}" FontFamily="{StaticResource NormalFont}"
+                                 HorizontalOptions="StartAndExpand" TextColor="Black" VerticalTextAlignment="Center" />
+                            </StackLayout>
+
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
                 <ListView x:Name="listUpcomingOrders" IsPullToRefreshEnabled="true" ItemsSource="{Binding UpcomingOrderList, Mode=TwoWay}" SeparatorVisibility="None"
                            HasUnevenRows="True" ItemSelected="listUpcomingOrders_ItemSelected" SelectedItem="{Binding UpcomingOrder}" SeparatorColor="White">
                     <ListView.ItemTemplate>
