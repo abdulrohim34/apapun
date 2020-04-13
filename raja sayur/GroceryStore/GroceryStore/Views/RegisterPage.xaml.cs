@@ -80,7 +80,7 @@ namespace GroceryStore.Views
                     Config.ErrorSnackbarMessage(ValidationMessages.PhoneNumberRequired);
                     return;
                 }
-                else if (mobile_number.Text.Length < 11)
+                else if (mobile_number.Text.Length < 10)
                 {
                     Config.ErrorSnackbarMessage(ValidationMessages.PhoneNumberMinimum);
                     return;

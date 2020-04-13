@@ -13,7 +13,7 @@ namespace GroceryStore.Helpers
     public class Config
     {
         public const string ApiErrorMessage = "Something went wrong";
-        public const string BaseUrl = "https://rajasayurindonesia.com/myadmin/";
+        public const string BaseUrl = "https://rajasayurindonesia.com/customer/";
         public const string ApiUrl = BaseUrl + "api/";
         public const string Login = "login";
         public const string Register = "userRegister";
