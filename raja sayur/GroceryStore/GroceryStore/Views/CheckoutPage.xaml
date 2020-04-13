@@ -184,11 +184,11 @@
                                             Text="COD (Bayar di Tempat)"
                                             FontFamily="{StaticResource PlatformFont}"
                                             TextFontSize="15" IsChecked="True" />
-                                    <input:RadioButton Color="#ef3938"
+                                    <!--<input:RadioButton Color="#ef3938"
                                             CircleSize="14"
                                             Text="Pembayaran Online (Akan Datang)"
                                             FontFamily="{StaticResource PlatformFont}"
-                                            TextFontSize="15" />
+                                            TextFontSize="15" />-->
                                 </input:RadioButtonGroupView>
                             </StackLayout>
                             <StackLayout HorizontalOptions="FillAndExpand"
