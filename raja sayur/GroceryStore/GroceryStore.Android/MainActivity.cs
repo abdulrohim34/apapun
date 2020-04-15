@@ -48,7 +48,7 @@ namespace GroceryStore.Droid
             {
                 Window.ClearFlags(WindowManagerFlags.TranslucentStatus);
                 Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
-                Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#ff0000"));
+                Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#088502"));
             }
 
             //This forces the custom renderers to be used
